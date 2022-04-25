@@ -24,10 +24,10 @@
                         <li class="nav-item <%= page_name === 'about' && 'active' %>">
                             <a class="nav-link" href="/about"> About</a>
                         </li>
-                        <li class="nav-item <%= page_name === 'service' && 'active' %>">
-                            <a class="nav-link" href="/service"> Service </a>
-                        </li>
                         <% if(userIN) { %>
+                            <li class="nav-item <%= page_name === 'read' && 'active' %>">
+                                <a class="nav-link" href="/users/read"> Read </a>
+                            </li>
                             <li class="nav-item <%= page_name === 'create' && 'active' %>">
                                 <a class="nav-link" href="/users/create"> Create </a>
                             </li>

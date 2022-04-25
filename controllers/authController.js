@@ -79,3 +79,20 @@ exports.createTask = async(req, res) => {
     });
   }
 }
+
+exports.readTasks = async (req, res) => {
+  try {
+    const tasks = await Task.find({ author: req.session.userID });
+    tasks.sort((a, b) => b.date - a.date);
+    tasks.reverse();
+    res.status(200).render('read', {
+      page_name: 'read',
+      tasks
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: 'fail',
+      error,
+    });
+  }
+};

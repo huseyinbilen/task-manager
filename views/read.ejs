@@ -16,22 +16,35 @@
       </div>
 
       <div class="service_container">
-        
-        
-        <div class="box">
-          <div class="img-box">
 
+        <% if(tasks.length === 0) { %>
+          <div class="box">
+            <div class="detail-box">
+              <h5>
+                Görev Yok !
+              </h5>
+              <p>
+                Henüz herhangi bir not eklemediniz.
+              </p>
+            </div>
           </div>
-          <div class="detail-box">
-            <h5>
-              Analytics
-            </h5>
-            <p>
-              Dipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-            </p>
-          </div>
-        </div>
-
+        <% } else { %>
+          <% for(let i = 0; i < tasks.length; i++) { %>
+            <div class="box">
+              <div class="img-box">
+                <h2><%= tasks[i].date.toISOString().split('T')[0]; %></h2>
+              </div>
+              <div class="detail-box">
+                <h5>
+                  <%= tasks[i].title %>
+                </h5>
+                <p>
+                  <%= tasks[i].description %>
+                </p>
+              </div>
+            </div>
+          <% } %>
+        <% } %>
       </div>
       <div class="btn-box">
         <a href="">

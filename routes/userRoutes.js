@@ -26,9 +26,6 @@ router.route('/login').post(authController.loginUser);
 router.route('/logout').get(authController.logoutUser);
 router.route('/create').get(authController.getCreatePage);
 router.route('/create').post(authController.createTask);
-// router.route('/dashboard').get(authMiddleware, authController.getDashboardPage);
-// router.route('/dashboard/upload').post(authMiddleware, authController.createPhotos);
-// router.route('/dashboard/upload/process').get(authMiddleware, authController.resizePhoto);
-// router.route('/:id').delete(authController.deleteUser);
+router.route('/read').get(authMiddleware, authController.readTasks);
 
 module.exports = router;

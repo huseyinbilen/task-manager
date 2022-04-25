@@ -23,9 +23,3 @@ exports.getLoginPage = (req, res) => {
     page_name: 'login',
   });
 };
-
-exports.getServicePage = (req, res) => {
-  res.status(200).render('service', {
-    page_name: 'service',
-  });
-};
