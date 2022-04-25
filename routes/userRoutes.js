@@ -27,5 +27,7 @@ router.route('/logout').get(authController.logoutUser);
 router.route('/create').get(authController.getCreatePage);
 router.route('/create').post(authController.createTask);
 router.route('/read').get(authMiddleware, authController.readTasks);
+router.route('/read/:id').get(authMiddleware, authController.getSingleTask);
+router.route('/read/:id').delete(authMiddleware, authController.deleteTask);
 
 module.exports = router;

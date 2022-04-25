@@ -96,3 +96,31 @@ exports.readTasks = async (req, res) => {
     });
   }
 };
+
+exports.getSingleTask = async (req, res) => {
+  try {
+    const task = await Task.findById(req.params.id);
+    res.status(200).render('single', {
+      page_name: 'single',
+      task
+    });
+
+  } catch (error) {
+    res.status(400).json({
+      status: 'fail',
+      error,
+    });
+  }
+};
+
+exports.deleteTask = async (req, res) => {
+  try {
+    const task = await Task.findOneAndRemove({ _id: req.params.id });
+    res.status(200).redirect('/users/read');
+  } catch (error) {
+    res.status(400).json({
+      status: 'fail',
+      error,
+    });
+  }
+};
