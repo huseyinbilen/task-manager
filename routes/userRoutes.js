@@ -29,5 +29,6 @@ router.route('/create').post(authController.createTask);
 router.route('/read').get(authMiddleware, authController.readTasks);
 router.route('/read/:id').get(authMiddleware, authController.getSingleTask);
 router.route('/read/:id').delete(authMiddleware, authController.deleteTask);
+router.route('/read/filter/:slug').get(authMiddleware, authController.filterTasks);
 
 module.exports = router;

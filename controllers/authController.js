@@ -70,7 +70,6 @@ exports.createTask = async(req, res) => {
       date: req.body.date,
       author: req.session.userID
     });
-    console.log(req.body);
     res.status(200).redirect('/users/create');
   } catch (error) {
     res.status(400).json({
@@ -117,6 +116,57 @@ exports.deleteTask = async (req, res) => {
   try {
     const task = await Task.findOneAndRemove({ _id: req.params.id });
     res.status(200).redirect('/users/read');
+  } catch (error) {
+    res.status(400).json({
+      status: 'fail',
+      error,
+    });
+  }
+};
+
+exports.filterTasks = async (req, res) => {
+  try {
+    let tasks = await Task.find({ author: req.session.userID });
+    let date = new Date().toISOString().split('T')[0];
+
+    // Filter for day
+    if(req.params.slug == 'day') {
+      let tasksFilter = tasks.filter((element) => {
+        return element.date.toISOString().split('T')[0] == date;
+      });
+      res.status(200).render('read', {
+        page_name: 'read',
+        tasks: tasksFilter
+      });
+    }
+    // Filter for week
+    else if (req.params.slug == 'week') {
+      const d = new Date();
+      d.setDate(d.getDate() + 7);
+      let tasksFilter = tasks.filter((element) => {
+        return (date <= element.date.toISOString().split('T')[0] && element.date.toISOString().split('T')[0] < d.toISOString().split('T')[0]);
+      });
+      tasksFilter.sort((a, b) => b.date - a.date);
+      tasksFilter.reverse();
+      res.status(200).render('read', {
+        page_name: 'read',
+        tasks: tasksFilter
+      });
+    }
+    // Filter for month
+    else {
+      let tasksFilter = tasks.filter((element) => {
+        if(`${element.date.toISOString().split('T')[0]}`.substring(0,7) == `${date}`.substring(0, 7)) {
+          return `${element.date.toISOString().split('T')[0]}`.substring(8) <= 31;
+        }
+      });
+      tasksFilter.sort((a, b) => b.date - a.date);
+      tasksFilter.reverse();
+      res.status(200).render('read', {
+        page_name: 'read',
+        tasks: tasksFilter
+      });
+    }
   } catch (error) {
     res.status(400).json({
       status: 'fail',

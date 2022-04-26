@@ -7,7 +7,7 @@
 
 
   <!-- service section -->
-  <section class="service_section layout_padding">
+  <section class="service_section layout_padding contact_section layout_padding">
     <div class="container">
       <div class="heading_container">
         <h2>
@@ -15,6 +15,43 @@
         </h2>
       </div>
 
+      <div class="">
+        <div class="">
+          <div class="row">
+            <div class="col-md-9 mx-auto">
+              <div class="contact-form">
+                <div class="clearfix text-center">
+                  <ul class="list-inline" style="list-style: none;">
+                    <li class="list-inline-item">
+                      <div class="d-flex justify-content-center">
+                        <a href="/users/read/filter/day"><button type="submit" class="btn_on-hover">
+                          Günlük
+                        </button></a>
+                      </div>
+                    </li>
+                    <li class="list-inline-item">
+                      <div class="d-flex justify-content-center">
+                        <a href="/users/read/filter/week"><button type="submit" class="btn_on-hover">
+                          Haftalık
+                        </button></a>
+                      </div>
+                    </li>
+                    <li class="list-inline-item">
+                      <div class="d-flex justify-content-center">
+                        <a href="/users/read/filter/month"><button type="submit" class="btn_on-hover">
+                          Aylık
+                        </button></a>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
       <div class="service_container">
 
         <% if(tasks.length === 0) { %>
@@ -39,7 +76,7 @@
                   <%= tasks[i].title %>
                 </h5></a>
                 <p>
-                  <%= tasks[i].description %>
+                  <%= tasks[i].description.substring(0, 100) + "..." %> %>
                 </p>
               </div>
             </div>
