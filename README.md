@@ -12,3 +12,7 @@ npm start
 ```
 ## Demo
 [Task Manager App](https://my-task-manager-example.herokuapp.com)
+
+
+Süreç hızlandırma adına önyüz de Template kullanılmıştır link için
+[html-design](https://html.design/download/techdor-software-application-html-template/)
